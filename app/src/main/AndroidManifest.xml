@@ -3,12 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools">
     <uses-feature
         android:name="android.hardware.telephony"
-        android:required="false" />
+        android:required="false"/>
+    <uses-feature android:name="android.hardware.sensor.proximity"
+        android:required="false"/>
     <uses-permission android:name="android.permission.ACCESS_SURFACE_FLINGER"
-        tools:ignore="ProtectedPermissions" />
+        tools:ignore="ProtectedPermissions"/>
     <uses-permission android:name="android.permission.ACCESS_SUPERUSER"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <uses-permission android:name="android.hardware.sensor.proximity"/>
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -27,7 +29,14 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <service android:name=".ScreenService" android:process=".S22PresentScreen"/>
+        <service android:name=".ScreenService"/>
         <service android:name=".ListenerService"/>
+        <service android:name=".NotificationService"
+            android:exported="false"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+        <intent-filter>
+            <action android:name="android.service.notification.NotificationListenerService" />
+        </intent-filter>
+        </service>
     </application>
 </manifest>

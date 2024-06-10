@@ -53,6 +53,5 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.1")
     implementation("com.github.topjohnwu.libsu:core:${libsuVersion}")
     implementation ("com.github.topjohnwu.libsu:service:${libsuVersion}")
-
 }
 

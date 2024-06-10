@@ -5,7 +5,6 @@ import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.Display
-import android.widget.TextView
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
@@ -16,17 +15,21 @@ class PresentationHandler(context: Context, display: Display?): Presentation(con
     override fun onCreate(savedInstanceState: Bundle?)
     {
         // When started
-        Log.d("S22Presentathandler", "Presentation start triggered")
+        Log.d("S22PresHandlerInit", "Presentation start triggered")
         super.onCreate(savedInstanceState)
         // Grab the content variable and display whatever it says should be displayed.
         setContentView(Globals.content)
         // Get todays date and the "local" format (although im in the UK and this displays the month first!)
-        val Datefield : TextView = findViewById(R.id.textView2)
         val today = LocalDateTime.now()
         val format = DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)
         val localtoday = today.format(format)
         // Push the date to the presentation.
-        Datefield.text = localtoday
-        Log.d("S22Presenthandler", "Presentation displayed")
+        Globals.datefield = findViewById(R.id.textView2)
+        Globals.datefield.text = localtoday
+        Globals.titlefield = findViewById(R.id.textViewTitle)
+        Globals.timefield = findViewById(R.id.textClock)
+        Globals.contentfield = findViewById(R.id.textViewContent)
+        Log.d("S22PresHandlerInit", "Presentation displayed")
     }
 }
+

@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewheading"
         android:layout_width="92dp"
         android:layout_height="26dp"
         android:text="S22 Present"
@@ -20,10 +20,10 @@
         app:layout_constraintVertical_bias="0.054" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="179dp"
+        android:id="@+id/buttonSecondScreen"
+        android:layout_width="178dp"
         android:layout_height="63dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="16dp"
         android:text="Activate second screen"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -31,22 +31,40 @@
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/buttonNotify"
+        android:layout_width="178dp"
+        android:layout_height="62dp"
+        android:layout_marginBottom="6dp"
+        android:text="Allow notifications"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSecondScreen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="200dp"
         android:layout_height="32dp"
-        android:layout_marginBottom="8dp"
         android:indeterminate="false"
         android:indeterminateBehavior="repeat"
         android:indeterminateDrawable="@android:drawable/progress_indeterminate_horizontal"
-        android:max="4"
+        android:max="6"
         android:maxHeight="20dip"
         android:progress="0"
         android:progressDrawable="@android:drawable/progress_horizontal"
         android:progressTint="#03A9F4"
-        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewheading" />
+
+    <TextView
+        android:id="@+id/textViewProgress"
+        android:layout_width="198dp"
+        android:layout_height="22dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
