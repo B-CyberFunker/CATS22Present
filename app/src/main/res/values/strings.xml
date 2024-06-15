@@ -2,4 +2,14 @@
     <string name="app_name">S22Present</string>
     <string name="Current_Presentation">null</string>
     <string name="Date">null</string>
+    <string-array name="Styles">
+        <item>Default</item>
+        <item>2000s MP3 Player (Blue)</item>
+        <item>Retro 7SEG (Red)</item>
+    </string-array>
+    <string-array name="Fonts">
+        <item>Default</item>
+        <item>7SEG Style</item>
+        <item>Pixel</item>
+    </string-array>
 </resources>

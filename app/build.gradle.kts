@@ -5,14 +5,18 @@ plugins {
 
 android {
     namespace = "com.android.s22present"
+    //noinspection GradleDependency
     compileSdk = 34
-
+    lint {
+        baseline = file("lint-baseline.xml")
+    }
     defaultConfig {
         applicationId = "com.android.s22present"
         minSdk = 30
+        //noinspection ExpiredTargetSdkVersion
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 3
+        versionName = "0.2.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -53,5 +57,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.1")
     implementation("com.github.topjohnwu.libsu:core:${libsuVersion}")
     implementation ("com.github.topjohnwu.libsu:service:${libsuVersion}")
+    implementation ("org.lsposed.hiddenapibypass:hiddenapibypass:2.0")
+    implementation("io.github.gautamchibde:audiovisualizer:2.2.5")
 }
 

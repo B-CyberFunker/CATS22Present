@@ -28,17 +28,25 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonNotify"
         android:layout_width="178dp"
         android:layout_height="62dp"
-        android:layout_marginBottom="6dp"
         android:text="Allow notifications"
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonSecondScreen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonSetting"
+        android:layout_width="178dp"
+        android:layout_height="62dp"
+        android:text="Settings"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonNotify"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -50,7 +58,7 @@
         android:indeterminate="false"
         android:indeterminateBehavior="repeat"
         android:indeterminateDrawable="@android:drawable/progress_indeterminate_horizontal"
-        android:max="6"
+        android:max="5"
         android:maxHeight="20dip"
         android:progress="0"
         android:progressDrawable="@android:drawable/progress_horizontal"

@@ -7,7 +7,10 @@ import android.os.IBinder
 import android.os.Looper
 import android.os.Message
 import android.os.Messenger
+import android.os.UEventObserver
 import android.util.Log
+import android.view.SurfaceControl
+import android.view.WindowManagerGlobal
 import com.topjohnwu.superuser.ipc.RootService
 
 // A service that performs screen changes based on the requests of ListenerService. This service has root access and limited context abilities.
@@ -23,35 +26,18 @@ class ScreenService : RootService()
         override fun handleMessage(msg: Message) {
             // If the message
             when (msg.what) {
-                // If the message is asking for the screen to be turned on.
-                2 ->{
-                    // This is the biggest hack in the history of hacks
-                    // After 200ms, wake up the device.
+                3 ->{Runtime.getRuntime().exec("input keyevent KEYCODE_SLEEP"); Log.v("S22PresScreenServ", "Sleep!");
                     Handler(Looper.getMainLooper()).postDelayed(
                         {
-                            Runtime.getRuntime().exec("input keyevent KEYCODE_WAKEUP")
-                            Log.d("S22PresScreenServ", "Waking!")
-                        }, 10)
-                    Handler(Looper.getMainLooper()).postDelayed(
-                        {
-                            Runtime.getRuntime().exec("input keyevent KEYCODE_SOFT_SLEEP")
-                            Log.d("S22PresScreenServ", "Back to sleep")
-                        }, 3500)
-                    }
-                // If the message is asking for the screen to be turned off
-                1 ->{
-                    // Wait one second to make sure the second screen is actually on, and then turn it off.
-                    Handler(Looper.getMainLooper()).postDelayed(
-                        {
-                           Globals.displayPowerMethod.invoke(null, Globals.token, 0)
-                           Log.d("S22PresScreenServ", "Turning off!")
-                        },1000)
-                }
+                            SurfaceControl.setDisplayPowerMode(Globals.token as IBinder?, SurfaceControl.POWER_MODE_OFF)
+                        },500)}
+                2 ->{Runtime.getRuntime().exec("input keyevent KEYCODE_WAKEUP"); Log.v("S22PresScreenServ", "Wakeup!")}
+                1 ->{SurfaceControl.setDisplayPowerMode(Globals.token as IBinder?, SurfaceControl.POWER_MODE_OFF); Log.v("S22PresScreenServ", "Turning off!")}
                 // If the message isn't recognised.
                 else ->
                     // Log it.
                     {
-                    Log.d("S22PresScreenServ", "I wasn't told anything meaningful... ${msg.what}")
+                    Log.e("S22PresScreenServ", "I wasn't told anything meaningful... ${msg.what}")
                     }
             }
         }
@@ -60,7 +46,7 @@ class ScreenService : RootService()
     {
         // When service is bound.
         // Log the change and send the messenger back to the ListenerService.
-        Log.d("S22PresScreenServInit", "Hello! I've been bound :3")
+        Log.i("S22PresScreenServInit", "Hello! I've been bound :3")
         mMessenger = Messenger(IncomingHandler(this))
         return mMessenger.binder
 

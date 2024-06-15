@@ -6,18 +6,47 @@
     android:layout_height="match_parent"
     android:background="#000000">
 
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="106dp"
+        android:layout_height="116dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginEnd="32dp"
+        android:background="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.chibde.visualizer.BarVisualizer
+        android:id="@+id/visualizerBar"
+        android:layout_width="107dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+    <com.chibde.visualizer.SquareBarVisualizer
+        android:id="@+id/visualizerSquare"
+        android:layout_width="107dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
     <TextClock
         android:id="@+id/textClock"
-        android:layout_width="105dp"
+        android:layout_width="94dp"
         android:layout_height="16dp"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
-        android:layout_marginBottom="51dp"
+        android:layout_marginBottom="48dp"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -30,16 +59,16 @@
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textViewTitle"
-        android:layout_width="107dp"
-        android:layout_height="16dp"
+        android:layout_width="90dp"
+        android:layout_height="14dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="34dp"
+        android:maxLines="1"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="12sp"
@@ -47,20 +76,22 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textViewContent"
-        android:layout_width="107dp"
-        android:layout_height="23dp"
-        android:layout_marginStart="11dp"
-        android:layout_marginEnd="11dp"
+        android:layout_width="90dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="10dp"
+        android:textSize="9dp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
