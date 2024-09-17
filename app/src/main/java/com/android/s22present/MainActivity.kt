@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity() {
             {
                 // Execute shell commands to activate second screen.
                 Log.w("S22PresMain", "Root achieved. Running commands... System will soft reboot!")
-                Shell.cmd("settings put global hidden_api_policy 1","setprop ro.vendor.gsi.image_running false", "setprop ctl.restart vendor.hwcomposer-2-1").exec()
+                Shell.cmd("settings put global hidden_api_policy 1","setprop ro.vendor.gsi.image_running false","setprop vendor.display.disable_skip_validate 1","setprop ro.hdmi.enable true", "setprop tunnel.decode true", "ro.qualcomm.cabl 2", "ro.vendor.display.cabl 2", "config.cabl.xml 1", "setprop ctl.restart vendor.hwcomposer-2-1").exec()
                 // If the system hasn't rebooted after 3 seconds.
                 Handler(Looper.getMainLooper()).postDelayed(
                 {
