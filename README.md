@@ -1,6 +1,13 @@
 # CATS22Present
 
 Displays content on the secondary screen. Designed for the CAT S22 but technically compatible with any android 11+ device. 
+This app is not currently compatible with the stock ROM. 
+
+It can:
+- Display the time/date on the secondary display. 
+- Display a notification text and title on the secondary display.
+- Display a visualiser.
+- Be customized in some ways including background, visualiser style, and font, as well as presets for all 3.
 
 Has some significant limitations at the moment, including: 
 - Potentially non-functional on A14 and/or LOS. 
