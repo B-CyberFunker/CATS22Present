@@ -1,6 +1,6 @@
 # CATS22Present
 
-Displays content on the secondary screen. Designed for the CAT S22 but technically compatible with any android 11+ device. 
+Displays content on the secondary screen. Designed for the CAT S22 but may be compatible with any android 11+ device. 
 This App is aimed at aftermarket ROMs - there is a lite version for stock ROMs that is significantly simpier and more reliable. See here: https://github.com/B-CyberFunker/S22Present-Lite
 
 It can:
