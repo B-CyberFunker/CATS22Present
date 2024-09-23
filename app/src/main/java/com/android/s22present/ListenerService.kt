@@ -112,76 +112,20 @@ class ListenerService : Service()
             override fun onReceive(context: Context, intent: Intent)
             {
                 // When a Broadcast is Received.
-
-                if (intent.action == Intent.ACTION_POWER_CONNECTED || intent.action == Intent.ACTION_POWER_DISCONNECTED)
-                {
-                    wakeup()
-                }
-                if (intent.action == "com.android.s22present.NOTIFICATION_RECEIVED")
-                {
-                    wakeuplong()
-                }
                 if (intent.action == "com.android.s22present.LIDOPEN")
                 {
                     lid = "open"
+                    wakeup()
                 }
                 if (intent.action == "com.android.s22present.LIDCLOSED")
                 {
                     lid = "closed"
-                    Handler(Looper.getMainLooper()).postDelayed(
-                        {
-                            wakeup()
-                        },250)
                 }
                 if(intent.action == Intent.ACTION_SCREEN_ON)
                 {
-                    turnoff()
+                      turnoff()
                 }
                 // If the System reports that the current call status has changed.
-                if (intent.action == TelephonyManager.ACTION_PHONE_STATE_CHANGED)
-                {
-                    // Grab the current call status.
-                    val state = TelephonyManager.EXTRA_STATE
-                    // If the phone is ringing
-                    if (state == TelephonyManager.EXTRA_STATE_RINGING)
-                    {
-                        // Log change
-                        Log.v("S22PresListServ", "The Phone is ringing.")
-                        wakeuplong()
-                    }
-                }
-            }
-            fun wakeup()
-            {
-                if (lid == "closed")
-                {
-                    Log.v("S22PresListServ", "Action requiring screen on detected")
-                    request = Message.obtain(null, 2, 0, 0); rootservice?.send(request)
-                    Handler(Looper.getMainLooper()).postDelayed(
-                        {
-                            if (lid == "closed")
-                            {
-                                Log.v("S22PresListServ", "Still closed. Going to sleep.")
-                                request = Message.obtain(null, 3, 0, 0); rootservice?.send(request)
-                            }
-                        }, 2000)
-                }
-            }
-            fun wakeuplong()
-            {
-                if(lid=="closed")
-                {
-                    Log.v("S22PresListServ", "Action requiring screen on detected")
-                    request = Message.obtain(null, 2, 0, 0); rootservice?.send(request)
-                    Handler(Looper.getMainLooper()).postDelayed(
-                        {
-                            if(lid=="closed")
-                            {
-                                Log.v("S22PresListServ", "Still closed. Going to sleep.")
-                                request = Message.obtain(null, 3, 0, 0); rootservice?.send(request)
-                            }
-                        },8000)
-                }
             }
             fun turnoff()
             {
@@ -192,18 +136,29 @@ class ListenerService : Service()
                         {
                             Log.v("S22PresListServ", "Action requiring screen off detected")
                             rootservice?.send(request)
-                        }, 850)
-                    Handler(Looper.getMainLooper()).postDelayed(
-                        {
-                            if(display1.state== Display.STATE_ON)
-                            rootservice?.send(request)
-                        }, 1400)
-                    Handler(Looper.getMainLooper()).postDelayed(
-                        {
-                            if(display1.state== Display.STATE_ON)
-                                rootservice?.send(request)
-                        }, 1800)
+                        }, 500)
                 }
+                if(lid=="closed")
+                {
+                     if(display1.state== Display.STATE_ON)
+                    {
+                              request = Message.obtain(null, 2, 0, 0)
+                              Handler(Looper.getMainLooper()).postDelayed(
+                        {
+                            Log.v("S22PresListServ", "Action requiring main screen off detected")
+                            rootservice?.send(request)
+                        }, 100)
+                    }
+                }
+            }
+            fun wakeup(){
+                if(display1.state== Display.STATE_OFF)
+                     request = Message.obtain(null, 3, 0, 0)
+                    Handler(Looper.getMainLooper()).postDelayed(
+                        {
+                            Log.v("S22PresListServ", "Action requiring screen on detected")
+                            rootservice?.send(request)
+                        }, 100)
             }
         }
         val sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
