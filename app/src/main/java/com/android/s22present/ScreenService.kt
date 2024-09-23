@@ -26,12 +26,8 @@ class ScreenService : RootService()
         override fun handleMessage(msg: Message) {
             // If the message
             when (msg.what) {
-                3 ->{Runtime.getRuntime().exec("input keyevent KEYCODE_SLEEP"); Log.v("S22PresScreenServ", "Sleep!");
-                    Handler(Looper.getMainLooper()).postDelayed(
-                        {
-                            SurfaceControl.setDisplayPowerMode(Globals.token as IBinder?, SurfaceControl.POWER_MODE_OFF)
-                        },500)}
-                2 ->{Runtime.getRuntime().exec("input keyevent KEYCODE_WAKEUP"); Log.v("S22PresScreenServ", "Wakeup!")}
+                3 ->{Runtime.getRuntime().exec("input keyevent KEYCODE_WAKEUP"); Log.v("S22PresScreenServ", "Wakeup!")}
+                2 ->{SurfaceControl.setDisplayPowerMode(Globals.token1 as IBinder?, SurfaceControl.POWER_MODE_OFF); Log.v("S22PresScreenServ", "Turning off!")}
                 1 ->{SurfaceControl.setDisplayPowerMode(Globals.token as IBinder?, SurfaceControl.POWER_MODE_OFF); Log.v("S22PresScreenServ", "Turning off!")}
                 // If the message isn't recognised.
                 else ->
